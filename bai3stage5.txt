@@ -1,0 +1,128 @@
+PHẦN 1: CÁC LỆNH POWERSHELL
+
+1. Tạo thư mục Farm-Manager
+
+- New-Item -ItemType Directory -Path .\Farm-Manager
+
+- Lệnh này dùng để tạo thư mục Farm-Manager.
+
+
+2. Tạo các thư mục bên trong
+
+- New-Item -ItemType Directory -Path .\Farm-Manager\code\app -Force
+
+- New-Item -ItemType Directory -Path .\Farm-Manager\database\db -Force
+
+- New-Item -ItemType Directory -Path .\Farm-Manager\logs\guides -Force
+
+- Các lệnh trên dùng để tạo các thư mục code, database và logs.
+
+- Force dùng để tạo các thư mục cần thiết và tránh lỗi nếu thư mục
+đã tồn tại.
+
+
+3. Tạo 3 file trong thư mục app
+
+- New-Item -ItemType File -Path .\Farm-Manager\code\app\main.py
+
+- New-Item -ItemType File -Path .\Farm-Manager\code\app\models.py
+
+- New-Item -ItemType File -Path .\Farm-Manager\code\app\utils.py
+
+- Các lệnh trên tạo 3 file rỗng:
+
+main.py
+models.py
+utils.py
+
+
+4. Tạo thư mục logs-backup
+
+- New-Item -ItemType Directory -Path .\Farm-Manager\logs-backup -Force
+
+- Thư mục này dùng để lưu bản sao của thư mục logs.
+
+
+5. Sao chép thư mục logs
+
+Copy-Item .\Farm-Manager\logs\* .\Farm-Manager\logs-backup -Recurse -Force
+
+Copy-Item dùng để sao chép file và thư mục.
+
+- Recurse dùng để sao chép cả các thư mục con bên trong.
+
+- Trong bài này cần dùng -Recurse để thư mục guides cũng được
+sao chép.
+
+- Force dùng để cho phép ghi đè nếu file hoặc thư mục đã tồn tại.
+
+
+PHẦN 2: KIỂM TRA
+
+- Sau khi chạy các lệnh trên, em dùng:
+
+ls .\Farm-Manager
+
+- Hoặc:
+
+dir .\Farm-Manager
+
+- Để kiểm tra các thư mục đã tạo.
+
+- Có thể dùng thêm:
+
+Get-ChildItem .\Farm-Manager -Recurse
+
+để xem cả thư mục con và các file bên trong.
+
+
+- Cấu trúc sau khi tạo:
+
+Farm-Manager
+    code
+        app
+            main.py
+            models.py
+            utils.py
+    database
+        db
+    logs
+        guides
+    logs-backup
+        guides
+
+
+*  GIẢI THÍCH ĐƯỜNG DẪN
+
+- Trong bài em sử dụng:
+
+.\Farm-Manager
+
+=>Đây là đường dẫn tương đối.
+
+- Dấu .\ có nghĩa là bắt đầu từ thư mục hiện tại.
+
+- Em dùng đường dẫn tương đối thay vì đường dẫn tuyệt đối như:
+
+C:\Users\TênUser\Desktop\Farm-Manager
+
+- vì đường dẫn tuyệt đối phụ thuộc vào máy tính đang sử dụng.
+
+- Nếu đổi sang máy khác thì đường dẫn có thể không giống nhau.
+
+=>Vì vậy dùng .\ sẽ thuận tiện hơn.
+
+
+=>KẾT LUẬN
+
+Sau khi thực hiện các lệnh trên, em đã tạo được thư mục
+Farm-Manager gồm code, database và logs.
+
+Trong thư mục app có 3 file là main.py, models.py và utils.py.
+
+Thư mục logs cũng được sao chép sang logs-backup.
+
+Tham số -Recurse dùng để sao chép cả thư mục con.
+
+Tham số -Force dùng để tránh lỗi khi file hoặc thư mục đã tồn tại.
+
